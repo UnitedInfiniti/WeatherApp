@@ -54,52 +54,49 @@ let h3 = document.querySelector("h3");
 h3.innerHTML = formatDate() + " | " + formatTime();
 
 //City Search
-function search(event) {
+function changeTemperature(response) {
+  let currentTemperature = Math.round(response.data.main.temp);
+  let temperatureElement = document.querySelector("#current-temperature");
+  temperatureElement.innerHTML = `${currentTemperature}`;
+  let currentConditions = response.data.weather[0].description;
+  let conditionsElement = document.querySelector("#condition");
+  conditionsElement.innerHTML = `${currentConditions}`;
+  let city = document.querySelector("#city-name");
+  city.innerHTML = response.data.name;
+}
+
+function changeCity(event) {
   event.preventDefault();
-  let searchCity = document.querySelector("#search-text-input");
-  let h1 = document.querySelector("h1");
-  h1.innerHTML = `${searchCity.value}, Country`;
-}
-
-function searchCity(cityName) {
+  let cityInput = document.querySelector("#search-text-input");
   let apiKey = "97bed167ec49bff56e6c1b63daef9c86";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units="metric"$appid=${apiKey}`;
-  axios.get(apiUrl).then(showWeather);
+  let apiUrlCity = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrlCity).then(changeTemperature);
 }
-
-function showWeather(response) {
-  console.log(response);
-  let temperature = Math.round(response.data.main.temp);
-  let high = Math.round(response.data.main.temp_max);
-  let low = Math.round(response.data.main.temp_min);
-  let wind = Math.round(response.data.wind.speed);
-  let humidity = Math.round(response.data.main.humidity);
-  let visibility = Math.round(response.data.visibility);
-  let sunrise = response.data.sys.sunrise;
-  let windgust = Math.round(response.data.wind.gust);
-  let pressure = response.data.main.pressure;
-  let ceiling = response.data.clouds.all;
-  let sunset = response.data.sys.sunset;
-  let weather = response.data.weather.main;
-  let cityName = response.data.name;
-  document.querySelector("#current-temperature").innerHTML = `${temperature}°`;
-  document.querySelector("#high-low").innerHTML = `L:${low}°  |  H:${high}°`;
-  document.querySelector("#wind").innerHTML = `Wind: ${wind}xm/s`;
-  document.querySelector("#humidity").innerHTML = `${humidity}%`;
-  document.querySelector("#visibility").innerHTML = `${visibility}`;
-  document.querySelector("#sunrise").innerHTML = `${sunrise}`;
-  document.querySelector("#wind-gust ").innerHTML = `${windgust}`;
-  document.querySelector("#pressure").innerHTML = `${pressure}`;
-  document.querySelector("#ceiling").innerHTML = `${ceiling}`;
-  document.querySelector("#sunset").innerHTML = `${sunset}`;
-  document.querySelector("#condition").innerHTML = `${weather}`;
-  document.querySelector(h1).innerHTML = `${cityName}`;
+function changeToCurrentLocation(position) {
+  let currentCityElement = document.querySelector("#city-name");
+  let currentCity = position.data.name;
+  currentCityElement.innerHTML = `${currentCity}`;
+  let currentTempElement = document.querySelector("#current-temperature");
+  let currentTemp = Math.round(position.data.main.temp);
+  currentTempElement.innerHTML = `${currentTemp}`;
+  let currentConditionsElement = document.querySelector("#condition");
+  let currConditions = position.data.weather[0].description;
+  currentConditionsElement.innerHTML = `${currConditions}`;
+  console.log(position);
 }
+function receiveCurrentPosition(position) {
+  let latitude = position.coords.latitude;
+  let longitude = position.coords.longitude;
+  let apiKey = "97bed167ec49bff56e6c1b63daef9c86";
+  let apiUrlCurrent = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrlCurrent).then(changeToCurrentLocation);
+}
+function getCurrentLatitudeLongitude(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(receiveCurrentPosition);
+}
+let searchBar = document.querySelector(".d-flex");
+searchBar.addEventListener("submit", changeCity);
 
-//let cityform = document.querySelector(".d-flex");
-//cityform.addEventListener("submit", citychange);
-
-// Celcious or Fahrenheit Toggle
-
-// F to C: (°F − 32) × 5/9 = °C
-// C to F: (C × 9/5) + 32 = °F
+let currentButton = document.querySelector(".fa-2x");
+currentButton.addEventListener("click", getCurrentLatitudeLongitude);
