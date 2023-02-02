@@ -144,8 +144,11 @@ input.form-control {
   margin-bottom: 20px;
 }
 
-.signature,
 .netlify {
+  cursor: pointer;
+}
+
+.signature {
   color: #9a8c98;
   font-family: "Lily Script One", cursive;
   text-align: center;
