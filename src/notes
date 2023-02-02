@@ -1,0 +1,146 @@
+// load city and temp
+function searchCity(city) {
+  let apiKey = "58a6775f97527351bf6c6966e209be39";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showWeather);
+}
+function showWeather(response) {
+  console.log(response);
+  let temperature = Math.round(response.data.main.temp);
+  let high = Math.round(response.data.main.temp_max);
+  let low = Math.round(response.data.main.temp_min);
+  let feels = Math.round(response.data.main.feels_like);
+  let humid = Math.round(response.data.main.humidity);
+  let wind = response.data.wind.speed;
+  let weather = response.data.weather[0].main;
+  let city = response.data.name;
+  document.querySelector("#numbertemp").innerHTML = `${temperature}°`;
+  document.querySelector("#currentHL").innerHTML = `H:${high}° L:${low}°`;
+  document.querySelector("#feelslike").innerHTML = `Feels Like: ${feels}°`;
+  document.querySelector("#humid").innerHTML = `Humidity: ${humid}%`;
+  document.querySelector("#wind").innerHTML = `Wind: ${wind}xm/s`;
+  document.querySelector("#weather").innerHTML = `${weather}`;
+  document.querySelector("#cityname").innerHTML = `${city}`;
+}
+
+searchCity("Brussels");
+
+//city change
+
+function citychange(event) {
+  event.preventDefault();
+  let valuecity = document.querySelector("#input-city");
+  let newcityname = valuecity.value;
+  searchCity(newcityname);
+}
+
+let cityform = document.querySelector("#enterCity");
+cityform.addEventListener("submit", citychange);
+
+// currentCityButton
+function currentlocation(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(getPositionTemp);
+}
+//
+function getPositionTemp(position) {
+  //console.log(position);
+  let lat = position.coords.latitude;
+  let long = position.coords.longitude;
+  let apiKey = "58a6775f97527351bf6c6966e209be39";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showWeather);
+}
+let currentform = document.querySelector("#currentcitybutton");
+currentform.addEventListener("click", currentlocation);
+// C vs F
+
+//function changetoCel(event) {
+//event.preventDefault();
+//let maintemp = document.querySelector("#numbertemp");
+//let mainHL = document.querySelector("#currentHL");
+//maintemp.innerHTML = `19°`;
+//mainHL.innerHTML = `H:12° L:20°`;
+//}
+//function changetoFaren(event) {
+//event.preventDefault();
+//let maintemp = document.querySelector("#numbertemp");
+//let mainHL = document.querySelector("#currentHL");
+//maintemp.innerHTML = `66°`;
+//mainHL.innerHTML = `H:54° L:68°`;
+//}
+//let degC = document.querySelector("#celsius");
+//degC.addEventListener("click", changetoCel);
+//let degF = document.querySelector("#farenheit");
+//degF.addEventListener("click", changetoFaren);
+
+//City Search Bar
+//function search(event) {
+//event.preventDefault();
+//let searchCity = document.querySelector("#search-text-input");
+//let h1 = document.querySelector("h1");
+//h1.innerHTML = `${searchCity.value}, Country`;
+//}
+
+//let form = document.querySelector(".d-flex");
+//form.addEventListener("submit", search);
+
+//Current Location Search
+//function retrievePosition(position) {
+//console.log(position);
+//}
+
+function showWeather(response) {
+  console.log(response);
+
+  document.querySelector("#current-temperature").innerHTML = `${temperature}°`;
+  document.querySelector("#high-low").innerHTML = `L:${low}°  |  H:${high}°`;
+  document.querySelector("#wind").innerHTML = `Wind: ${wind}xm/s`;
+  document.querySelector("#humidity").innerHTML = `${humidity}%`;
+  document.querySelector("#visibility").innerHTML = `${visibility}`;
+  document.querySelector("#sunrise").innerHTML = `${sunrise}`;
+  document.querySelector("#wind-gust ").innerHTML = `${windgust}`;
+  document.querySelector("#pressure").innerHTML = `${pressure}`;
+  document.querySelector("#ceiling").innerHTML = `${ceiling}`;
+  document.querySelector("#sunset").innerHTML = `${sunset}`;
+  document.querySelector("#condition").innerHTML = `${weather}`;
+  document.querySelector(h1).innerHTML = `${cityName}`;
+}
+
+function changeTemperature(response) {
+  let currentTemperature = Math.round(response.data.main.temp);
+  let temperatureElement = document.querySelector("#curr-temp");
+  temperatureElement.innerHTML = `${currentTemperature}`;
+  let currentConditions = response.data.weather[0].description;
+  let conditionsElement = document.querySelector("#conditions");
+  conditionsElement.innerHTML = `${currentConditions}`;
+  let city = document.querySelector("#city");
+  city.innerHTML = response.data.name;
+}
+function changeCity(event) {
+  event.preventDefault();
+  let cityInput = document.querySelector("#search-input");
+  let apiKey = "8cd9be374c7c96c39a9fe73f4bf2f055";
+  let apiUrlCity = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrlCity).then(changeTemperature);
+}
+
+function changeCity(event) {
+  event.preventDefault();
+  let city = document.querySelector("#city-name");
+  let cityInput = document.querySelector("#search-text-input");
+  if (cityInput.value === "" || cityInput.value === " ") {
+    city.innerHTML = `Please enter a city`;
+  } else {
+    city.innerHTML = `${cityInput.value}`;
+  }
+  let apiKey = "97bed167ec49bff56e6c1b63daef9c86";
+  let apiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityInput.value}&appid=${apiKey}`;
+  axios.get(apiUrl).then(function convertToCoords(response) {
+    let latitude = response.data[0].lat;
+    let longitude = response.data[0].lon;
+    let apiKey = "97bed167ec49bff56e6c1b63daef9c86";
+    let apiUrlCoords = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrlCoords).then(changeTemperature);
+  });
+}

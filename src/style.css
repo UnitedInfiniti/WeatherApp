@@ -1,0 +1,169 @@
+body {
+  color: #22223b;
+  font-family: Quicksand;
+}
+
+button {
+  background-color: #f1f1f1;
+  cursor: pointer;
+  margin-right: 8px;
+  padding: 10px 16px;
+}
+
+h1 {
+  font-size: 30pt;
+  font-weight: 850;
+  margin: 15px 10px 0px 10px;
+  padding: 5px 20px 0px;
+}
+
+h2 {
+  font-size: 50pt;
+}
+
+h3 {
+  font-size: 15pt;
+  margin: 0 10px 15px 10px;
+  padding: 0px 20px 5px;
+}
+
+h5 {
+  font-style: italic;
+  margin: 0;
+}
+
+h1,
+h3,
+h5 {
+  text-align: center;
+}
+
+h5,
+h6 {
+  font-weight: bolder;
+}
+
+hr {
+  margin: 0px 5px 5px;
+}
+
+input.form-control {
+  width: 350px !important;
+}
+
+.appArea {
+  background-color: #f2e9e4;
+  border-radius: 20px;
+  border: 2px solid black;
+  margin: 1% 15% 5% 15%;
+  max-width: 75%;
+}
+
+.card-body {
+  padding: 0;
+  margin: 40px 5px;
+}
+
+#celsious-link {
+  padding-left: 1em;
+}
+
+.col {
+  font-weight: bold;
+}
+
+.container {
+  padding: 12px;
+}
+
+.curTemp {
+  display: contents;
+  padding: 30px;
+  text-align: center;
+}
+
+.curtempDisplay {
+  align-items: center;
+  display: contents;
+  margin: 5px;
+}
+
+.curtempImg {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.day1,
+.day2,
+.day3,
+.day4,
+.day5 {
+  font-weight: normal;
+}
+
+#condition {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 10pt;
+}
+
+#degree-selector {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#degree-switch {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding-left: 1em;
+}
+
+#fahrenheit-link {
+  display: flex;
+  justify-content: center;
+  margin: 0px;
+}
+
+#flexSwitchCheckChecked {
+  margin: auto;
+}
+
+#high-low {
+  display: block;
+  margin-bottom: 10pt;
+}
+
+.fa-2x:hover {
+  cursor: pointer;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}
+
+.signature {
+  color: #9a8c98;
+  font-family: "Lily Script One", cursive;
+  text-align: center;
+}
+
+.text-center {
+  margin-bottom: 10px;
+}
+
+.Title {
+  font-family: "Lily Script One", cursive;
+  font-size: 40pt;
+  font-weight: 450;
+  text-align: center;
+}
+
+.w-100 {
+  display: contents;
+  margin: 5px;
+  overflow-wrap: break-word;
+  padding: 5px;
+}
