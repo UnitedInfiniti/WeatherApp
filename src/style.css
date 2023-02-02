@@ -3,6 +3,9 @@
   font-family: Quicksand;
 }
 
+a {
+  cursor: pointer;
+}
 button {
   background-color: #f1f1f1;
   cursor: pointer;
@@ -142,10 +145,6 @@ input.form-control {
 
 .navbar {
   margin-bottom: 20px;
-}
-
-.netlify {
-  cursor: pointer;
 }
 
 .signature {
