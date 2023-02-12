@@ -45,26 +45,20 @@
             <div class="row" id="condition"></div>
           </div>
           <div class="col">
-            <span class="curTemp">
+            <div class="curTemp">
               <h2 id="current-temperature">? °</h2>
-              <hr />
-              <div class="row" id="degree-selector">
-                <div class="col" id="fahrenheit-link">
-                  ° F
-                  <div class="form-check form-switch" id="degree-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked />
-                    <label class="form-check-label" id="celsious-link" for="flexSwitchCheckChecked">° C</label>
-                  </div>
-                </div>
+              <div class="units">
+                <a href="#" id="fahrenheit-link">°F</a> |
+                <a href="#" id="celsius-link" class="active">°C</a>
               </div>
-            </span>
+            </div>
           </div>
           <div class="col">
             <div class="row">
-              <div id="high-low">Low | High</div>
               <div id="feelsLike"># °</div>
+              <div id="high-low">Low | High</div>
               <div id="humidity">HMes.</div>
-              <div id="wind">Mes.</div>
+              <div id="wind">WMes.</div>
               <div id="sunrise">RiseMes.</div>
               <div id="sunset">SetMes.</div>
             </div>
