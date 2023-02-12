@@ -54,60 +54,45 @@ let h3 = document.querySelector("h3");
 h3.innerHTML = formatDate() + " | " + formatcurrentTime();
 
 //City Search
-function changeTemperature(response) {
-  let currentCityElement = document.querySelector("#city-name");
-  let currentCity = response.data.name;
-  currentCityElement.innerHTML = `${currentCity}`;
-  let currentTempElement = document.querySelector("#current-temperature");
-  let currentTemp = Math.round(response.data.main.temp);
-  currentTempElement.innerHTML = `${currentTemp} °`;
-  let currentConditionsElement = document.querySelector("#condition");
-  let currConditions = response.data.weather[0].description;
-  currentConditionsElement.innerHTML = `${currConditions}`;
-  let lowTemp = Math.round(response.data.main.temp_min);
-  let highTemp = Math.round(response.data.main.temp_max);
-  let highlowElement = document.querySelector("#high-low");
-  highlowElement.innerHTML = `${lowTemp}°  |  ${highTemp}°`;
-}
-
 function changeCity(event) {
   event.preventDefault();
   let cityInput = document.querySelector("#search-text-input");
   let apiKey = "97bed167ec49bff56e6c1b63daef9c86";
   let apiUrlCity = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrlCity).then(changeTemperature);
+  axios.get(apiUrlCity).then(changeToCurrentLocation);
 }
 
-function changeToCurrentLocation(position) {
+function changeToCurrentLocation(response) {
   let currentCityElement = document.querySelector("#city-name");
-  let currentCity = position.data.name;
+  let currentCity = response.data.name;
   currentCityElement.innerHTML = `${currentCity}`;
   let currentTempElement = document.querySelector("#current-temperature");
-  let currentTemp = Math.round(position.data.main.temp);
+  celsiusTemperature = currentTempElement;
+  let currentTemp = Math.round(response.data.main.temp);
   currentTempElement.innerHTML = `${currentTemp} °`;
   let currentConditionsElement = document.querySelector("#condition");
-  let currConditions = position.data.weather[0].description;
+  let currConditions = response.data.weather[0].description;
   currentConditionsElement.innerHTML = `${currConditions}`;
   let currentfeelElement = document.querySelector("#feelsLike");
-  let currentFeels = Math.round(position.data.main.feels_like);
+  let currentFeels = Math.round(response.data.main.feels_like);
   currentfeelElement.innerHTML = `Feels Like: ${currentFeels} °`;
-  let lowTemp = Math.round(position.data.main.temp_min);
-  let highTemp = Math.round(position.data.main.temp_max);
+  let lowTemp = Math.round(response.data.main.temp_min);
+  let highTemp = Math.round(response.data.main.temp_max);
   let highlowElement = document.querySelector("#high-low");
   highlowElement.innerHTML = `L: ${lowTemp}°  |  H: ${highTemp}°`;
   let currentwindElement = document.querySelector("#wind");
-  let currentWind = Math.round(position.data.wind.speed);
+  let currentWind = Math.round(response.data.wind.speed);
   currentwindElement.innerHTML = `Wind Speed: ${currentWind} km/h`;
   let currenthumidElement = document.querySelector("#humidity");
-  let currentHumid = position.data.main.humidity;
+  let currentHumid = response.data.main.humidity;
   currenthumidElement.innerHTML = `Humidity: ${currentHumid} %`;
   let sunriseElement = document.querySelector("#sunrise");
   sunriseElement.innerHTML =
-    "Sunrise: " + formatTime(position.data.sys.sunrise * 1000);
+    "Sunrise: " + formatTime(response.data.sys.sunrise * 1000);
   let sunsetElement = document.querySelector("#sunset");
   sunsetElement.innerHTML =
-    "Sunset: " + formatTime(position.data.sys.sunset * 1000);
-  console.log(position);
+    "Sunset: " + formatTime(response.data.sys.sunset * 1000);
+  console.log(response);
 }
 function receiveCurrentPosition(position) {
   let latitude = position.coords.latitude;
@@ -120,6 +105,7 @@ function getCurrentLatitudeLongitude(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(receiveCurrentPosition);
 }
+
 let searchBar = document.querySelector(".d-flex");
 searchBar.addEventListener("submit", changeCity);
 
@@ -135,8 +121,35 @@ function formatTime(timestamp) {
   }
   let currentMinute = time.getMinutes();
   if (currentMinute < 10) {
-    currentMinutes = `0${currentMinute}`;
+    currentMinute = `0${currentMinute}`;
   }
   let formattedTime = `${currentHour}:${currentMinute}`;
   return formattedTime;
 }
+
+//Temperature Unit Change
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#current-temperature");
+
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let fahrenheiTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheiTemperature);
+}
+
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  let temperatureElement = document.querySelector("#current-temperature");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
+let celsiusTemperature = null;
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
