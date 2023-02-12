@@ -118,9 +118,9 @@ input.form-control {
 }
 
 .signature {
-  color: #9a8c98;
-  font-family: "Lily Script One", cursive;
+  color: #2d2d2d;
   text-align: center;
+  font-size: 10pt;
 }
 
 .text-center {
