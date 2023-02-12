@@ -108,6 +108,11 @@ input.form-control {
   font-weight: normal;
 }
 
+.feelsLike {
+  text-align: center;
+  display: contents;
+}
+
 .text-center {
   border: 0px;
 }
@@ -144,7 +149,14 @@ input.form-control {
 
 #high-low {
   display: block;
+  margin-bottom: 0pt;
+  font-size: 11pt;
+}
+
+#high-low-tags {
+  display: block;
   margin-bottom: 10pt;
+  font-size: 10pt;
 }
 
 .fa-2x:hover {
