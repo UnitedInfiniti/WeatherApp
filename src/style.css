@@ -10,7 +10,9 @@
 
 a {
   cursor: pointer;
+  text-decoration: none;
 }
+
 button {
   background-color: #f1f1f1;
   cursor: pointer;
@@ -64,10 +66,6 @@ input.form-control {
   margin: 40px 5px;
 }
 
-#celsious-link {
-  padding-left: 1em;
-}
-
 .container {
   max-width: 600px;
   margin: 30px auto;
@@ -111,30 +109,6 @@ input.form-control {
   margin: 10pt;
 }
 
-#degree-selector {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-#degree-switch {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  padding-left: 1em;
-}
-
-#fahrenheit-link {
-  display: flex;
-  justify-content: center;
-  margin: 0px;
-}
-
-#flexSwitchCheckChecked {
-  margin: auto;
-}
-
 .fa-2x:hover {
   cursor: pointer;
 }
@@ -160,13 +134,6 @@ input.form-control {
   text-align: center;
 }
 
-.w-100 {
-  display: contents;
-  margin: 5px;
-  overflow-wrap: break-word;
-  padding: 5px;
-}
-
 #high-low,
 #feelsLike,
 #humidity,
@@ -180,4 +147,20 @@ input.form-control {
 #current-temp-img {
   display: flex;
   justify-content: center;
+}
+
+.units {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.active {
+  color: rgb(33, 33, 33);
+  font-weight: bolder;
+  cursor: default;
+  text-decoration: none;
+}
+
+.active:hover {
+  text-decoration: none;
 }
