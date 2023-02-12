@@ -42,16 +42,16 @@ function formatDate(date) {
 }
 console.log(formatDate(currentTime));
 
-function formatTime(time) {
+function formatcurrentTime(time) {
   let currentHour = currentTime.getHours();
   let currentMinute = currentTime.getMinutes();
-  let formattedTime = `${currentHour}:${currentMinute}`;
-  return formattedTime;
+  let formattedcurrentTime = `${currentHour}:${currentMinute}`;
+  return formattedcurrentTime;
 }
-console.log(formatTime(currentTime));
+console.log(formatcurrentTime(currentTime));
 
 let h3 = document.querySelector("h3");
-h3.innerHTML = formatDate() + " | " + formatTime();
+h3.innerHTML = formatDate() + " | " + formatcurrentTime();
 
 //City Search
 function changeTemperature(response) {
@@ -77,6 +77,7 @@ function changeCity(event) {
   let apiUrlCity = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&appid=${apiKey}&units=metric`;
   axios.get(apiUrlCity).then(changeTemperature);
 }
+
 function changeToCurrentLocation(position) {
   let currentCityElement = document.querySelector("#city-name");
   let currentCity = position.data.name;
@@ -93,16 +94,19 @@ function changeToCurrentLocation(position) {
   let lowTemp = Math.round(position.data.main.temp_min);
   let highTemp = Math.round(position.data.main.temp_max);
   let highlowElement = document.querySelector("#high-low");
-  highlowElement.innerHTML = `${lowTemp}°  |  ${highTemp}°`;
+  highlowElement.innerHTML = `L: ${lowTemp}°  |  H: ${highTemp}°`;
   let currentwindElement = document.querySelector("#wind");
   let currentWind = Math.round(position.data.wind.speed);
-  currentwindElement.innerHTML = `${currentWind} km/h`;
+  currentwindElement.innerHTML = `Wind Speed: ${currentWind} km/h`;
   let currenthumidElement = document.querySelector("#humidity");
   let currentHumid = position.data.main.humidity;
-  currenthumidElement.innerHTML = `${currentHumid} %`;
-  let currentvisElement = document.querySelector("#visibility");
-  let currentVis = position.data.visibility;
-  currentvisElement.innerHTML = `${currentVis}`;
+  currenthumidElement.innerHTML = `Humidity: ${currentHumid} %`;
+  let sunriseElement = document.querySelector("#sunrise");
+  sunriseElement.innerHTML =
+    "Sunrise: " + formatTime(position.data.sys.sunrise * 1000);
+  let sunsetElement = document.querySelector("#sunset");
+  sunsetElement.innerHTML =
+    "Sunset: " + formatTime(position.data.sys.sunset * 1000);
   console.log(position);
 }
 function receiveCurrentPosition(position) {
@@ -121,3 +125,18 @@ searchBar.addEventListener("submit", changeCity);
 
 let currentButton = document.querySelector(".fa-2x");
 currentButton.addEventListener("click", getCurrentLatitudeLongitude);
+
+//Sunrise and Sunset Time Conversion
+function formatTime(timestamp) {
+  let time = new Date(timestamp);
+  let currentHour = time.getHours();
+  if (currentHour < 10) {
+    currentHour = `0${currentHour}`;
+  }
+  let currentMinute = time.getMinutes();
+  if (currentMinute < 10) {
+    currentMinutes = `0${currentMinute}`;
+  }
+  let formattedTime = `${currentHour}:${currentMinute}`;
+  return formattedTime;
+}
