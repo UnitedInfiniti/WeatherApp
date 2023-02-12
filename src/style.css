@@ -55,11 +55,11 @@ input.form-control {
 }
 
 .appArea {
-  background-color: #f2e9e4;
-  border-radius: 20px;
-  border: 2px solid black;
-  margin: 1% 15% 5% 15%;
-  max-width: 75%;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .card-body {
@@ -76,7 +76,11 @@ input.form-control {
 }
 
 .container {
-  padding: 12px;
+  max-width: 600px;
+  margin: 30px auto;
+  background-color: #f2e9e4;
+  border-radius: 20px;
+  border: 2px solid black;
 }
 
 .curTemp {
@@ -102,6 +106,10 @@ input.form-control {
 .day4,
 .day5 {
   font-weight: normal;
+}
+
+.text-center {
+  border: 0px;
 }
 
 #condition {
