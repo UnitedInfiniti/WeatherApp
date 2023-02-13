@@ -16,7 +16,7 @@ a {
 button {
   background-color: #f1f1f1;
   cursor: pointer;
-  margin-right: 8px;
+  margin-right: 20px;
   padding: 10px 16px;
 }
 
@@ -106,11 +106,11 @@ input.form-control {
 #condition {
   display: flex;
   justify-content: space-evenly;
-  margin: 10pt;
 }
 
 .fa-2x:hover {
   cursor: pointer;
+  color: #2d92bb;
 }
 
 .navbar {
@@ -128,9 +128,8 @@ input.form-control {
 }
 
 .Title {
-  font-family: "Lily Script One", cursive;
   font-size: 40pt;
-  font-weight: 450;
+  font-weight: bolder;
   text-align: center;
 }
 
@@ -144,9 +143,10 @@ input.form-control {
   font-weight: bold;
 }
 
-#current-temp-img {
-  display: flex;
-  justify-content: center;
+.curtempImg {
+  margin-bottom: 20px;
+  margin-top: -10px;
+  text-align: center;
 }
 
 .units {

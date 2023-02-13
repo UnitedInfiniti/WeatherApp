@@ -55,7 +55,7 @@ h3.innerHTML = formatDate() + " | " + formatcurrentTime();
 
 //City Search
 function search(event) {
-  event.preventDefault();
+  //event.preventDefault();
   let cityInput = document.querySelector("#search-text-input");
   let apiKey = "97bed167ec49bff56e6c1b63daef9c86";
   let apiUrlCity = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&appid=${apiKey}&units=metric`;
@@ -70,6 +70,11 @@ function changeToCurrentLocation(response) {
   let currentTemp = Math.round(response.data.main.temp);
   celsiusTemperature = currentTemp;
   currentTempElement.innerHTML = `${currentTemp}°`;
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
   let currentConditionsElement = document.querySelector("#condition");
   let currConditions = response.data.weather[0].description;
   currentConditionsElement.innerHTML = `${currConditions}`;
@@ -136,16 +141,16 @@ function displayFahrenheitTemperature(event) {
 
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
-  let fahrenheiTemperature = (celsiusTemperature * 9) / 5 + 32;
-  temperatureElement.innerHTML = Math.round(fahrenheiTemperature);
+  let fahrenheiTemperature = Math.round((celsiusTemperature * 9) / 5 + 32);
+  temperatureElement.innerHTML = `${fahrenheiTemperature} °`;
 }
 
 function displayCelsiusTemperature(event) {
   event.preventDefault();
+  let temperatureElement = document.querySelector("#current-temperature");
   celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
-  let temperatureElement = document.querySelector("#current-temperature");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+  temperatureElement.innerHTML = `${celsiusTemperature} °`;
 }
 
 let celsiusTemperature = null;

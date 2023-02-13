@@ -15,17 +15,17 @@
   <link rel="stylesheet" href="src/style.css" />
   <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 
-  <title>Weather Centeral</title>
+  <title>Weather App Project</title>
 </head>
 
 <body>
-  <div class="Title">Weather Centeral</div>
+  <div class="Title">Weather Forecast</div>
   <div class="appArea">
     <div class="container">
       <nav class="navbar" id="search-bar-control">
         <div class="container-fluid">
           <form class="d-flex" role="search">
-            <input class="form-control me-2" id="search-text-input" type="search" placeholder="Search City, Country"
+            <input class="form-control me-2" id="search-text-input" type="search" placeholder="Search City"
               aria-label="Search" />
             <button class="btn btn-outline-success" id="search-begin-input" type="submit">
               Search
@@ -40,9 +40,9 @@
         <div class="row">
           <div class="col">
             <div class="curtempImg">
-              <i class="fa-solid fa-temperature-empty fa-4x"></i>
+              <img src="http://openweathermap.org/img/wn/@2x.png" alt="" id="icon" />
+              <div id="condition"></div>
             </div>
-            <div class="row" id="condition"></div>
           </div>
           <div class="col">
             <div class="curTemp">
