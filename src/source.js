@@ -55,7 +55,7 @@ h3.innerHTML = formatDate() + " | " + formatcurrentTime();
 
 //City Search
 function search(event) {
-  //event.preventDefault();
+  event.preventDefault();
   let cityInput = document.querySelector("#search-text-input");
   let apiKey = "97bed167ec49bff56e6c1b63daef9c86";
   let apiUrlCity = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&appid=${apiKey}&units=metric`;
@@ -80,17 +80,21 @@ function changeToCurrentLocation(response) {
   currentConditionsElement.innerHTML = `${currConditions}`;
   let currentfeelElement = document.querySelector("#feelsLike");
   let currentFeels = Math.round(response.data.main.feels_like);
+  celsiusFeels = currentFeels;
   currentfeelElement.innerHTML = `Feels Like: ${currentFeels} °`;
   let lowTemp = Math.round(response.data.main.temp_min);
   let highTemp = Math.round(response.data.main.temp_max);
+  celsiusLow = lowTemp;
+  celsiusHigh = highTemp;
   let highlowElement = document.querySelector("#high-low");
   highlowElement.innerHTML = `L: ${lowTemp}°  |  H: ${highTemp}°`;
-  let currentwindElement = document.querySelector("#wind");
-  let currentWind = Math.round(response.data.wind.speed);
-  currentwindElement.innerHTML = `Wind Speed: ${currentWind} km/h`;
   let currenthumidElement = document.querySelector("#humidity");
   let currentHumid = response.data.main.humidity;
   currenthumidElement.innerHTML = `Humidity: ${currentHumid} %`;
+  let currentwindElement = document.querySelector("#wind");
+  let currentWind = Math.round(response.data.wind.speed);
+  celsiusWind = currentWind;
+  currentwindElement.innerHTML = `Wind Speed: ${currentWind} km/h`;
   let sunriseElement = document.querySelector("#sunrise");
   sunriseElement.innerHTML =
     "Sunrise: " + formatTime(response.data.sys.sunrise * 1000);
@@ -137,23 +141,49 @@ function formatTime(timestamp) {
 //Temperature Unit Change
 function displayFahrenheitTemperature(event) {
   event.preventDefault();
-  let temperatureElement = document.querySelector("#current-temperature");
-
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
+
+  let fahtemperatureElement = document.querySelector("#current-temperature");
   let fahrenheiTemperature = Math.round((celsiusTemperature * 9) / 5 + 32);
-  temperatureElement.innerHTML = `${fahrenheiTemperature} °`;
+  fahtemperatureElement.innerHTML = `${fahrenheiTemperature} °`;
+
+  let fahcurrentfeelsElement = document.querySelector("#feelsLike");
+  let fahcurrentFeels = Math.round((celsiusFeels * 9) / 5 + 32);
+  fahcurrentfeelsElement.innerHTML = `Feels Like: ${fahcurrentFeels} °`;
+
+  let fahhighlowElement = document.querySelector("#high-low");
+  let fahlowTemp = Math.round((celsiusLow * 9) / 5 + 32);
+  let fahhighTemp = Math.round((celsiusHigh * 9) / 5 + 32);
+  fahhighlowElement.innerHTML = `L: ${fahlowTemp}°  |  H: ${fahhighTemp}°`;
+
+  let fahcurrentwindElement = document.querySelector("#wind");
+  let fahcurrentWind = Math.round(celsiusWind * 0.621371);
+  fahcurrentwindElement.innerHTML = `Wind Speed: ${fahcurrentWind} mph`;
 }
 
 function displayCelsiusTemperature(event) {
   event.preventDefault();
-  let temperatureElement = document.querySelector("#current-temperature");
   celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
+  let temperatureElement = document.querySelector("#current-temperature");
   temperatureElement.innerHTML = `${celsiusTemperature} °`;
+
+  let currentfeelElement = document.querySelector("#feelsLike");
+  currentfeelElement.innerHTML = `Feels Like: ${celsiusFeels} °`;
+
+  let highlowElement = document.querySelector("#high-low");
+  highlowElement.innerHTML = `L: ${celsiusLow}°  |  H: ${celsiusHigh}°`;
+
+  let currentwindElement = document.querySelector("#wind");
+  currentwindElement.innerHTML = `Wind Speed: ${celsiusWind} km/h`;
 }
 
 let celsiusTemperature = null;
+let celsiusFeels = null;
+let celsiusLow = null;
+let celsiusHigh = null;
+let celsiusWind = null;
 
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
