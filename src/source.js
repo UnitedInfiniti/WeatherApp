@@ -65,7 +65,8 @@ function search(event) {
 function changeToCurrentLocation(response) {
   let currentCityElement = document.querySelector("#city-name");
   let currentCity = response.data.name;
-  currentCityElement.innerHTML = `${currentCity}`;
+  let currentCountry = response.data.sys.country;
+  currentCityElement.innerHTML = `${currentCity}, ${currentCountry}`;
   let currentTempElement = document.querySelector("#current-temperature");
   let currentTemp = Math.round(response.data.main.temp);
   celsiusTemperature = currentTemp;
