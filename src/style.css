@@ -164,3 +164,16 @@ input.form-control {
 .active:hover {
   text-decoration: none;
 }
+
+.weather-forecast {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.weather-forecast-temperatures {
+  font-size: 13px;
+}
+
+.weather-forecast-temp-min {
+  opacity: 0.6;
+}
