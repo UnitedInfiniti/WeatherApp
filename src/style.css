@@ -166,14 +166,16 @@ input.form-control {
 }
 
 .weather-forecast {
-  margin-top: 10px;
+  margin-bottom: 10px;
   text-align: center;
+  color: #000;
+  font-weight: bolder;
+}
+
+.weather-forecast-temperature-min {
+  opacity: 0.5;
 }
 
 .weather-forecast-temperatures {
   font-size: 13px;
-}
-
-.weather-forecast-temp-min {
-  opacity: 0.6;
 }

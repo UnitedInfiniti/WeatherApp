@@ -70,7 +70,7 @@ function changeToCurrentLocation(response) {
   let currentTempElement = document.querySelector("#current-temperature");
   let currentTemp = Math.round(response.data.main.temp);
   celsiusTemperature = currentTemp;
-  currentTempElement.innerHTML = `${currentTemp}°`;
+  currentTempElement.innerHTML = `${currentTemp}°C`;
   let iconElement = document.querySelector("#icon");
   iconElement.setAttribute(
     "src",
@@ -82,13 +82,13 @@ function changeToCurrentLocation(response) {
   let currentfeelElement = document.querySelector("#feelsLike");
   let currentFeels = Math.round(response.data.main.feels_like);
   celsiusFeels = currentFeels;
-  currentfeelElement.innerHTML = `Feels Like: ${currentFeels} °`;
+  currentfeelElement.innerHTML = `Feels Like: ${currentFeels}°C`;
   let lowTemp = Math.round(response.data.main.temp_min);
   let highTemp = Math.round(response.data.main.temp_max);
   celsiusLow = lowTemp;
   celsiusHigh = highTemp;
   let highlowElement = document.querySelector("#high-low");
-  highlowElement.innerHTML = `L: ${lowTemp}°  |  H: ${highTemp}°`;
+  highlowElement.innerHTML = `L: ${lowTemp}°C  |  H: ${highTemp}°C`;
   let currenthumidElement = document.querySelector("#humidity");
   let currentHumid = response.data.main.humidity;
   currenthumidElement.innerHTML = `Humidity: ${currentHumid} %`;
@@ -147,20 +147,20 @@ function displayFahrenheitTemperature(event) {
 
   let fahtemperatureElement = document.querySelector("#current-temperature");
   let fahrenheiTemperature = Math.round((celsiusTemperature * 9) / 5 + 32);
-  fahtemperatureElement.innerHTML = `${fahrenheiTemperature} °`;
+  fahtemperatureElement.innerHTML = `${fahrenheiTemperature}°F`;
 
   let fahcurrentfeelsElement = document.querySelector("#feelsLike");
   let fahcurrentFeels = Math.round((celsiusFeels * 9) / 5 + 32);
-  fahcurrentfeelsElement.innerHTML = `Feels Like: ${fahcurrentFeels} °`;
+  fahcurrentfeelsElement.innerHTML = `Feels Like: ${fahcurrentFeels}°F`;
 
   let fahhighlowElement = document.querySelector("#high-low");
   let fahlowTemp = Math.round((celsiusLow * 9) / 5 + 32);
   let fahhighTemp = Math.round((celsiusHigh * 9) / 5 + 32);
-  fahhighlowElement.innerHTML = `L: ${fahlowTemp}°  |  H: ${fahhighTemp}°`;
+  fahhighlowElement.innerHTML = `L: ${fahlowTemp}°F  |  H: ${fahhighTemp}°F`;
 
   let fahcurrentwindElement = document.querySelector("#wind");
   let fahcurrentWind = Math.round(celsiusWind * 0.621371);
-  fahcurrentwindElement.innerHTML = `Wind Speed: ${fahcurrentWind} mph`;
+  fahcurrentwindElement.innerHTML = `Wind Speed: ${fahcurrentWind} mp/h`;
 }
 
 function displayCelsiusTemperature(event) {
@@ -168,13 +168,13 @@ function displayCelsiusTemperature(event) {
   celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
   let temperatureElement = document.querySelector("#current-temperature");
-  temperatureElement.innerHTML = `${celsiusTemperature} °`;
+  temperatureElement.innerHTML = `${celsiusTemperature}°C`;
 
   let currentfeelElement = document.querySelector("#feelsLike");
-  currentfeelElement.innerHTML = `Feels Like: ${celsiusFeels} °`;
+  currentfeelElement.innerHTML = `Feels Like: ${celsiusFeels}°C`;
 
   let highlowElement = document.querySelector("#high-low");
-  highlowElement.innerHTML = `L: ${celsiusLow}°  |  H: ${celsiusHigh}°`;
+  highlowElement.innerHTML = `L: ${celsiusLow}°C  |  H: ${celsiusHigh}°C`;
 
   let currentwindElement = document.querySelector("#wind");
   currentwindElement.innerHTML = `Wind Speed: ${celsiusWind} km/h`;
@@ -191,3 +191,35 @@ fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
+
+//5 Day Forcast
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let days = ["Thu", "Fri", "Sat", "Sun", "Mon"];
+
+  let forecastHTML = `<div class="row">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+      <div class="col">
+        <div class="weather-forecast-date">${day}</div>
+        <img
+          src="http://openweathermap.org/img/wn/50d@2x.png"
+          alt=""
+          width="36"
+        />
+        <div class="weather-forecast-temperatures">
+          <span class="weather-forecast-temperature-max"> 18° </span>
+          <span class="weather-forecast-temperature-min"> 12° </span>
+        </div>
+      </div>
+  `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+  console.log(forecastHTML);
+}
+displayForecast();
