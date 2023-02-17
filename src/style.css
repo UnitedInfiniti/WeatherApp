@@ -10,12 +10,10 @@
 }
 
 body {
-  background-image: url(/images/sunset.jpg);
-  background-repeat: no-repeat;
+  background-image: url(/images/sky.jpg);
   background-size: cover;
-  background-attachment: fixed;
-  width: 100%;
-  min-height: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 a {
@@ -123,9 +121,10 @@ input.form-control {
 }
 
 .Title {
-  font-size: 40pt;
+  font-size: 35pt;
   font-weight: bolder;
   text-align: center;
+  color: #e5e3e0;
 }
 
 #high-low,
