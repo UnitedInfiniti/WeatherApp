@@ -2,10 +2,20 @@
   color: #22223b;
   font-family: Quicksand;
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
+}
+
+.background {
+  margin: 0 auto;
+  padding: 15px 0px;
+}
+
+body {
+  background-image: url(/img/sunset.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  width: 100%;
+  min-height: 100%;
 }
 
 a {
@@ -61,17 +71,12 @@ input.form-control {
   width: 350px !important;
 }
 
-.card-body {
-  padding: 0;
-  margin: 40px 5px;
-}
-
 .container {
   max-width: 600px;
-  margin: 30px auto;
-  background-color: #f2e9e4;
+  margin: 10px auto;
+  padding: 15px 10px;
+  background-color: #e5e3e0;
   border-radius: 20px;
-  border: 2px solid black;
 }
 
 .curTemp {
@@ -86,21 +91,13 @@ input.form-control {
   margin: 5px;
 }
 
+#sunset {
+  margin-bottom: 10px;
+}
+
 .curtempImg {
   margin-top: 20px;
   text-align: center;
-}
-
-.day1,
-.day2,
-.day3,
-.day4,
-.day5 {
-  font-weight: normal;
-}
-
-.text-center {
-  border: 0px;
 }
 
 #condition {
@@ -118,13 +115,11 @@ input.form-control {
 }
 
 .signature {
-  color: #2d2d2d;
+  color: #22223b;
   text-align: center;
   font-size: 10pt;
-}
-
-.text-center {
-  margin-bottom: 10px;
+  font-family: Quicksand;
+  padding-top: 25px;
 }
 
 .Title {
@@ -166,7 +161,7 @@ input.form-control {
 }
 
 .weather-forecast {
-  margin-bottom: 10px;
+  margin-top: 10px;
   text-align: center;
   color: #000;
   font-weight: bolder;

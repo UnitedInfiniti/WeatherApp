@@ -19,63 +19,65 @@
 </head>
 
 <body>
-  <div class="Title">Weather Forecast</div>
-  <div class="appArea">
-    <div class="container">
-      <nav class="navbar" id="search-bar-control">
-        <div class="container-fluid">
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" id="search-text-input" type="search"
-              placeholder="Search City, Country Code" aria-label="Search" />
-            <button class="btn btn-outline-success" id="search-begin-input" type="submit">
-              Search
-            </button>
-            <i class="fa-solid fa-location-dot fa-2x"></i>
-          </form>
-        </div>
-      </nav>
-      <h1 id="city-name">City Name</h1>
-      <h3>Current Date | Local Time</h3>
-      <div class="curtempDisplay">
-        <div class="row">
-          <div class="col">
-            <div class="curtempImg">
-              <img src="https://openweathermap.org/img/wn/@2x.png" alt="" id="icon" />
-              <div id="condition"></div>
-            </div>
+  <div class="background">
+    <div class="Title">Weather Forecast</div>
+    <div class="appArea">
+      <div class="container">
+        <nav class="navbar" id="search-bar-control">
+          <div class="container-fluid">
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" id="search-text-input" type="search"
+                placeholder="Search City, Country Code" aria-label="Search" />
+              <button class="btn btn-outline-success" id="search-begin-input" type="submit">
+                Search
+              </button>
+              <i class="fa-solid fa-location-dot fa-2x"></i>
+            </form>
           </div>
-          <div class="col">
-            <div class="curTemp">
-              <h2 id="current-temperature">? °</h2>
-              <div class="units">
-                <a href="#" id="fahrenheit-link">°F</a> |
-                <a href="#" id="celsius-link" class="active">°C</a>
+        </nav>
+        <h1 id="city-name">City Name</h1>
+        <h3>Current Date | Local Time</h3>
+        <div class="curtempDisplay">
+          <div class="row">
+            <div class="col">
+              <div class="curtempImg">
+                <img src="https://openweathermap.org/img/wn/@2x.png" alt="" id="icon" />
+                <div id="condition"></div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="curTemp">
+                <h2 id="current-temperature">? °</h2>
+                <div class="units">
+                  <a href="#" id="fahrenheit-link">°F</a> |
+                  <a href="#" id="celsius-link" class="active">°C</a>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="row">
+                <div id="feelsLike">Feels Like:</div>
+                <div id="high-low">L: | H:</div>
+                <div id="humidity">Humidity:</div>
+                <div id="wind">Sind Speed:</div>
+                <div id="sunrise">Sunrise:</div>
+                <div id="sunset">Sunset:</div>
               </div>
             </div>
           </div>
-          <div class="col">
-            <div class="row">
-              <div id="feelsLike"># °</div>
-              <div id="high-low">Low | High</div>
-              <div id="humidity">HMes.</div>
-              <div id="wind">WMes.</div>
-              <div id="sunrise">RiseMes.</div>
-              <div id="sunset">SetMes.</div>
-            </div>
+        </div>
+        <hr />
+        <h5>5 Day Forecast</h5>
+        <div class="weather-forecast" id="forecast"></div>
+        <div class="signature">
+          This project was coded by Kyla Loasby, and is
+          <a href="https://github.com/UnitedInfiniti/WeatherApp">open-sourced on GitHub,</a>
+          <div>
+            and
+            <a href="https://netlify.com/"> hosted on Netlify</a>
           </div>
         </div>
       </div>
-      <hr />
-      <h5>5 Day Forecast</h5>
-      <div class="weather-forecast" id="forecast"></div>
-    </div>
-  </div>
-  <div class="signature">
-    This project was coded by Kyla Loasby, and is
-    <a href="https://github.com/UnitedInfiniti/WeatherApp">open-sourced on GitHub,</a>
-    <div>
-      and
-      <a href="https://netlify.com/"> hosted on Netlify</a>
     </div>
   </div>
 </body>
